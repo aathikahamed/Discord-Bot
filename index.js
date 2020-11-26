@@ -29,8 +29,12 @@ client.login(process.env.DISCORD_BOT_TOKEN);
 
 client.on("message", (msg) => {
   if (msg.channel.id === "781604557985284196" && msg.content[0] === "!") {
-    axios.get("https://disease.sh/v3/covid-19/all").then((response) => {
+    if (msg.content === "!help command") {
       msg.channel.send(exampleEmbed);
-    });
+    } else if (msg.content === "!covid") {
+      axios.get("https://disease.sh/v3/covid-19/all").then((response) => {
+        msg.channel.send(response.data.cases);
+      });
+    }
   }
 });
