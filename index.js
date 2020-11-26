@@ -11,5 +11,6 @@ client.on("message", (msg) => {
     axios.get("https://disease.sh/v3/covid-19/all").then((response) => {
       msg.channel.send(response.cases);
     });
+    msg.channel.send("HI");
   }
 });
