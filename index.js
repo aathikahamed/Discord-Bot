@@ -73,6 +73,5 @@ const dataEmbed = (props) => {
     )
     .addField("Inline field title", "Some value here", true)
     .setImage(props.flag || "https://i.imgur.com/wSTFkRM.png")
-    .setTimestamp()
-    .setFooter("All data from disease.sh");
+    .setTimestamp();
 };
