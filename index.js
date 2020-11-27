@@ -37,18 +37,39 @@ client.on("message", (msg) => {
         axios
           .get("https://disease.sh/v3/covid-19/all")
           .then((response) => {
-            msg.channel.send(
-              dataEmbed({
-                title: `Covid Cases ${response.data.cases}`,
-                url: "covidmeter.xyz",
-                description: "Covid-19 Details in the World",
-                thumbnail:
-                  "https://cdn.iconscout.com/icon/free/png-256/globe-showing-americas-eart-33894.png",
-                flag:
-                  "https://cdn.iconscout.com/icon/free/png-256/globe-showing-americas-eart-33894.png",
-              })
-            );
-            msg.channel.send("HI");
+            let message = new Discord.MessageEmbed()
+              .setColor("#0099ff")
+              .setTitle(`Covid Cases Today WorldWide is ${response.data.cases}`)
+              .setURL("https://discord.js.org/")
+              .setDescription("Covid-19 Details in the World")
+              .setThumbnail(
+                "https://cdn.iconscout.com/icon/free/png-256/globe-showing-americas-eart-33894.png"
+              )
+              .addFields(
+                { name: "Regular field title", value: "Some value here" },
+                { name: "\u200B", value: "\u200B" },
+                {
+                  name: "Inline field title",
+                  value: "Some value here",
+                  inline: true,
+                },
+                {
+                  name: "Inline field title",
+                  value: "Some value here",
+                  inline: true,
+                }
+              )
+              .addField("Inline field title", "Some value here", true)
+              .setImage(
+                "https://cdn.iconscout.com/icon/free/png-256/globe-showing-americas-eart-33894.png"
+              )
+              .setTimestamp()
+              .setFooter(
+                "Some footer text here",
+                "https://i.imgur.com/wSTFkRM.png"
+              );
+
+            msg.channel.send(message);
           })
           .catch((error) => {
             console.log(error);
@@ -57,21 +78,3 @@ client.on("message", (msg) => {
     }
   }
 });
-
-const dataEmbed = (props) => {
-  return new Discord.MessageEmbed()
-    .setColor("#0099ff")
-    .setTitle(props.title)
-    .setURL(props.url)
-    .setDescription(props.description)
-    .setThumbnail(props.thumbnail)
-    .addFields(
-      { name: "Regular field title", value: "Some value here" },
-      { name: "\u200B", value: "\u200B" },
-      { name: "Inline field title", value: "Some value here", inline: true },
-      { name: "Inline field title", value: "Some value here", inline: true }
-    )
-    .addField("Inline field title", "Some value here", true)
-    .setImage(props.flag || "https://i.imgur.com/wSTFkRM.png")
-    .setTimestamp();
-};
