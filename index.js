@@ -34,19 +34,25 @@ client.on("message", (msg) => {
         msg.channel.send(exampleEmbed);
         break;
       case "!covid":
-        axios.get("https://disease.sh/v3/covid-19/all").then((response) => {
-          msg.channel.send(
-            dataEmbed({
-              title: `Covid Cases ${response.data.cases}`,
-              url: "covidmeter.xyz",
-              description: "Covid-19 Details in the World",
-              thumbnail:
-                "https://cdn.iconscout.com/icon/free/png-256/globe-showing-americas-eart-33894.png",
-              flag:
-                "https://cdn.iconscout.com/icon/free/png-256/globe-showing-americas-eart-33894.png",
-            })
-          );
-        });
+        axios
+          .get("https://disease.sh/v3/covid-19/all")
+          .then((response) => {
+            msg.channel.send(
+              dataEmbed({
+                title: `Covid Cases ${response.data.cases}`,
+                url: "covidmeter.xyz",
+                description: "Covid-19 Details in the World",
+                thumbnail:
+                  "https://cdn.iconscout.com/icon/free/png-256/globe-showing-americas-eart-33894.png",
+                flag:
+                  "https://cdn.iconscout.com/icon/free/png-256/globe-showing-americas-eart-33894.png",
+              })
+            );
+            msg.channel.send("HI");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
         break;
     }
   }
