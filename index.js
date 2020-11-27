@@ -73,8 +73,5 @@ const dataEmbed = (props) => {
     )
     .addField("Inline field title", "Some value here", true)
     .setImage(props.flag || "https://i.imgur.com/wSTFkRM.png")
-    .setTimestamp()
-    .catch((error) => {
-      console.log(error);
-    });
+    .setTimestamp();
 };
